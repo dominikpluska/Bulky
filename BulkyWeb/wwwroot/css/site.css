@@ -1,6 +1,61 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+/*.divider-text::before,
+.divider-text::after {
+    color : white;
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #555;
+    margin: auto 025rem;
+    box-shadow: 0 -2px;
+}*/
+
+/*.divider-text::before
+.divider-text::after {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #555;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    flex: 1;
+    content: "";
+}*/
+
+
+/*.divider-text {
+    overflow: hidden;
+    text-align: center;
+}
+
+    .divider-text::before,
+    .divider-text::after {
+        background-color: #000;
+        content: "";
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        vertical-align: middle;
+        width: 50%;
+    }
+
+.divider-text::before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+
+.divider-text::after {
+    left: 0.5em;
+    margin-right: -50%;
+}*/
+
+.divider-text-break {
+
+    padding: 0 10px;
+    margin: auto
+}
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;

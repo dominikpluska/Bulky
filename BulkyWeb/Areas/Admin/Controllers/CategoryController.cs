@@ -2,13 +2,16 @@
 using Bulky.DataAccess.Repository;
 using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
+using Bulky.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
-    [Route("Category")]
+
+    [Authorize(Roles = SD.Role_Admin)]
     [Area("Admin")]
     public class CategoryController : Controller
     {
@@ -24,14 +27,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(objCategoryList);
         }
 
-        [HttpGet("Create")]
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             return View();
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -49,17 +52,9 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(category);
         }
 
-        [HttpPost("Create")]
+        [HttpPost]
         public IActionResult Create(Category category)
         {
-            //if (category.Name == category.DisplayOrder.ToString())
-            //{
-            //    ModelState.AddModelError("name", "The display order cannot match the name!");
-            //}
-            //if (category.Name != null && category.Name == "test")
-            //{
-            //    ModelState.AddModelError("", "Test is an invalid value");
-            //}
             if (ModelState.IsValid)
             {
                 _unitOfWork.CategoryRepository.Add(category);
@@ -72,7 +67,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
 
 
-        [HttpPost("{id}")]
+        [HttpPost]
         public IActionResult Edit(Category category)
         {
 
@@ -87,7 +82,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         }
 
-        [HttpPost("Delete/{id}")]
+        [HttpPost]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
